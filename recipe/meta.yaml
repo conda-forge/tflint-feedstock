@@ -1,5 +1,5 @@
 {% set goname = "github.com/terraform-linters/tflint" %}
-{% set version = "0.15.0" %}
+{% set version = "0.15.3" %}
 
 {% set name = goname.split('/')[-1] %}
 {% set pkg_src = ('src/'+goname).replace("/",os.sep) %}
@@ -10,8 +10,8 @@ package:
 
 source:
   - folder: {{ pkg_src }}
-    url: https://{{ goname }}/archive/v{{version}}.tar.gz
-    sha256: 14dce8d50f5701f89783a925b3834d222e7d2c70fcd7b5d95f8809dc701d0a1f
+    url: https://{{ goname }}/archive/v{{ version }}.tar.gz
+    sha256: 878498373f45e6a34a3e1016339309ba973d7f13887430ec9674d745a751e170
 
 build:
   number: 0
@@ -32,7 +32,7 @@ test:
 about:
   home: https://github.com/terraform-linters/tflint
   license: MPL 2.0
-  license_file:  {{ pkg_src }}/LICENSE
+  license_file: {{ pkg_src }}/LICENSE
   summary: TFLint is a Terraform linter focused on possible errors, best practices, etc.
   dev_url: https://github.com/terraform-linters/tflint.git
 
