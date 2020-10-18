@@ -5,11 +5,11 @@ Home: https://github.com/terraform-linters/tflint
 
 Package license: MPL 2.0
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tflint-feedstock/blob/master/LICENSE.txt)
 
 Summary: TFLint is a Terraform linter focused on possible errors, best practices, etc.
 
-
+Development: https://github.com/terraform-linters/tflint.git
 
 Current build status
 ====================
