@@ -1,5 +1,5 @@
 {% set goname = "github.com/terraform-linters/tflint" %}
-{% set version = "0.44.0" %}
+{% set version = "0.44.1" %}
 
 {% set name = goname.split('/')[-1] %}
 {% set pkg_src = ('src/'+goname).replace("/",os.sep) %}
@@ -11,7 +11,7 @@ package:
 source:
   - folder: {{ pkg_src }}
     url: https://{{ goname }}/archive/v{{ version }}.tar.gz
-    sha256: 21629f4cfe3348020dea7b850ae5e003091f8f19fd621a1bd7a5e4fe4517ec79
+    sha256: 079e5f25cf18c33f9b3ac69942b5f8b5de917c41dcfd6039ca9faad739a7613e
 
 build:
   number: 0
