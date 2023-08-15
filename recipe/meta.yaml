@@ -18,7 +18,9 @@ build:
     - cd src
     - go-licenses save . --save_path ../library_licenses
     - go build -v -o $PREFIX/bin/tflint  # [not win]
-    - go build -v -o %LIBRARY_PREFIX%/tflint.exe  # [win]
+    - go build -v -o %LIBRARY_PREFIX%\tflint.exe  # [win]
+    # Clear out cache to avoid file not removable warnings
+    - chmod -R u+w $(go env GOPATH) && rm -r $(go env GOPATH)  # [unix]
 
 requirements:
   build:
