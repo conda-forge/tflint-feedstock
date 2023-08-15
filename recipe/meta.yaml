@@ -17,8 +17,8 @@ build:
   script:
     - cd src
     - go-licenses save . --save_path ../library_licenses
-    - go build -v -o $PREFIX/bin/{{ name|lower }}  # [not win]
-    - go build -v -o %LIBRARY_PREFIX%/{{ name|lower }}.exe  # [win]
+    - go build -v -o $PREFIX/bin/tflint  # [not win]
+    - go build -v -o %LIBRARY_PREFIX%/tflint.exe  # [win]
 
 requirements:
   build:
@@ -26,10 +26,9 @@ requirements:
     - go-licenses
 
 test:
-  requires:
-    - m2-bash  # [win]
   commands:
-    - bash -c "{{ name|lower }} -v"
+    - tflint -v
+    - tflint --help
 
 about:
   home: https://github.com/terraform-linters/tflint
