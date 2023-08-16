@@ -2,37 +2,42 @@
 {% set version = "0.47.0" %}
 
 {% set name = goname.split('/')[-1] %}
-{% set pkg_src = ('src/'+goname).replace("/",os.sep) %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  - folder: {{ pkg_src }}
+  - folder: src
     url: https://{{ goname }}/archive/v{{ version }}.tar.gz
     sha256: 2e9cefebb18e4fb15faa217dd2005feda2fdcabb7948d1298773b8458bb04abe
 
 build:
-  number: 0
+  number: 1
   script:
-    - pushd {{ pkg_src }}
-    - go install -v .
+    - cd src
+    - go-licenses save . --save_path ../library_licenses
+    - go build -v -o $PREFIX/bin/tflint  # [not win]
+    - go build -v -o %LIBRARY_BIN%\tflint.exe  # [win]
+    # Clear out cache to avoid file not removable warnings
+    - chmod -R u+w $(go env GOPATH) && rm -r $(go env GOPATH)  # [unix]
 
 requirements:
   build:
-    - {{ compiler('go') }}
+    - {{ compiler('go-nocgo') }}
+    - go-licenses
 
 test:
-  requires:
-    - m2-bash  # [win]
   commands:
-    - bash -c "{{ name|lower }} -v"
+    - tflint -v
+    - tflint --help
 
 about:
   home: https://github.com/terraform-linters/tflint
   license: MPL 2.0
-  license_file: {{ pkg_src }}/LICENSE
+  license_file:
+    - src/LICENSE
+    - library_licenses/
   summary: TFLint is a Terraform linter focused on possible errors, best practices, etc.
   dev_url: https://github.com/terraform-linters/tflint.git
 
@@ -40,3 +45,4 @@ extra:
   recipe-maintainers:
     - sodre
     - mariusvniekerk
+    - pavelzw
