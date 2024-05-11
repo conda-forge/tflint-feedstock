@@ -34,9 +34,10 @@ test:
 
 about:
   home: https://github.com/terraform-linters/tflint
-  license: MPL 2.0
+  license: MPL-2.0 AND BUSL-1.1
   license_file:
     - src/LICENSE
+    - src/LICENSE-BUSL
     - library_licenses/
   summary: TFLint is a Terraform linter focused on possible errors, best practices, etc.
   dev_url: https://github.com/terraform-linters/tflint.git
