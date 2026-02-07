@@ -9,13 +9,21 @@ source:
   - target_directory: src
     url: https://github.com/terraform-linters/tflint/archive/v${{ version }}.tar.gz
     sha256: d99c9eb3003375a4220607e1b479c9292450fd2c576549b1887f1c7259730e17
-
+  - url: https://raw.githubusercontent.com/cyberphone/json-canonicalization/19d51d7fe467/LICENSE
+    sha256: 6821faaddedf2d78c95bb6d98b127e9e616097afd2f6bcc34389f000d13ab12d
+    file_name: LICENSE-json-canonicalization
+  - url: https://raw.githubusercontent.com/in-toto/attestation/v1.1.2/LICENSE
+    sha256: b3a6ac899861c2c28a1abd5c7ea8733fefaed6938d730e099c42671386032aeb
+    file_name: LICENSE-in-toto-attestation
+  - url: https://raw.githubusercontent.com/in-toto/in-toto-golang/v0.9.0/LICENSE
+    sha256: b5c26c8a2ad6dd7cac6646e470a32ee42d23c36124caac4e66c989b6545b2a44
+    file_name: LICENSE-in-toto-golang
 
 build:
   number: 0
   script:
     - cd src
-    - go-licenses save . --save_path ../library_licenses
+    - go-licenses save . --save_path ../library_licenses --ignore github.com/cyberphone/json-canonicalization --ignore github.com/in-toto/attestation --ignore github.com/in-toto/in-toto-golang
     - if: unix
       then: go build -v -o $PREFIX/bin/tflint -ldflags="-s -w"
       else: go build -v -o %LIBRARY_BIN%\tflint.exe -ldflags="-s"
@@ -41,6 +49,9 @@ about:
     - src/LICENSE
     - src/LICENSE-BUSL
     - library_licenses/
+    - LICENSE-json-canonicalization
+    - LICENSE-in-toto-attestation
+    - LICENSE-in-toto-golang
   summary: TFLint is a Terraform linter focused on possible errors, best practices, etc.
   repository: https://github.com/terraform-linters/tflint.git
 
