@@ -1,5 +1,5 @@
 context:
-  version: 0.61.0
+  version: "0.62.0"
 
 package:
   name: tflint
@@ -8,7 +8,7 @@ package:
 source:
   - target_directory: src
     url: https://github.com/terraform-linters/tflint/archive/v${{ version }}.tar.gz
-    sha256: d99c9eb3003375a4220607e1b479c9292450fd2c576549b1887f1c7259730e17
+    sha256: e3736da82afb3a77037f72b9a01f2d5a60560664ed927426627ef7cfa3356fdd
   - url: https://raw.githubusercontent.com/cyberphone/json-canonicalization/19d51d7fe467/LICENSE
     sha256: 6821faaddedf2d78c95bb6d98b127e9e616097afd2f6bcc34389f000d13ab12d
     file_name: LICENSE-json-canonicalization
